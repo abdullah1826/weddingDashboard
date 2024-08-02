@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const AuthInput = ({ isSignin }) => {
   const naviget = useNavigate();
+
   return (
     <div className="h-[100%] w-[40%] flex justify-center items-center">
       <div className="w-[82%] h-[90%]  rounded-[65px] shadow-xl border flex justify-center items-center">
@@ -30,8 +31,11 @@ const AuthInput = ({ isSignin }) => {
               </p>
             </div>
           )}
-          <button className="outline-none w-[90%] border h-[55px] rounded-[8px] bg-[#4C6156]  mt-2 text-white">
-            Sign up
+          <button
+            className="outline-none w-[90%] border h-[55px] rounded-[8px] bg-[#4C6156]  mt-2 text-white"
+            onClick={() => naviget("/dashboard")}
+          >
+            {isSignin ? "Sign in" : "Sign up"}
           </button>
           <div className="outline-none w-[90%] border h-[55px] rounded-[8px] border-[#B4B4B4]  mt-3 text-white flex justify-center items-center gap-2 cursor-pointer">
             <img src={fb} alt="facebook" className="h-[27px] w-[27px]" />
