@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { CiSearch } from "react-icons/ci";
 import { MdOutlineFileDownload } from "react-icons/md";
@@ -6,33 +6,67 @@ import { DataGrid } from "@mui/x-data-grid";
 import { IoQrCodeOutline } from "react-icons/io5";
 import { FiEye } from "react-icons/fi";
 import { GoTrash } from "react-icons/go";
+import axios from "axios";
+import DownloadCsv from "../components/DownloadCsv";
 
 const Dashboard = () => {
+  let baseUrl = import.meta.env.VITE_BASE_URL;
+  const token = localStorage.getItem("weddId");
+  const [rsvps, setRsvps] = useState([]);
+  //-------------------------------getting rsvp data------------------------
+
+  useEffect(() => {
+    const gettingRsvpData = async () => {
+      const response = await axios.get(`${baseUrl}/card/getRsvp`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (response.data.status === true) {
+        console.log(response.data.data);
+        setRsvps(response.data.data);
+      }
+    };
+    gettingRsvpData();
+  }, []);
+
+  console.log(rsvps);
+
   const columns = [
-    { field: "fullName", headerName: "Full Name", width: 130 },
-    { field: "totalGuests", headerName: "Total Guests", width: 130 },
-    { field: "email", headerName: "Email", width: 130 },
+    { field: "fName", headerName: "Full Name", width: 130 },
+    { field: "numberOfGuests", headerName: "Total Guests", width: 130 },
+    { field: "mail", headerName: "Email", width: 130 },
     {
-      field: "selectedDish",
-      headerName: "Selected Dish",
+      field: "phone",
+      headerName: "Phone",
       width: 130,
     },
     {
-      field: "status",
+      field: "AttendingStatus",
       headerName: "Status",
       sortable: false,
       width: 130,
       renderCell: (params) => (
         <div className="h-[100%] flex items-center">
-          <div className="h-[30px] w-[100px] bg-[#CAFFAA] rounded-[5px] flex justify-center items-center font-[600] text-[11px] text-[#20B408]">
+          <div
+            className="h-[30px] w-[100px] bg-[#CAFFAA] rounded-[5px] flex justify-center items-center font-[600] text-[11px] text-[#20B408]"
+            style={
+              params.value === "Attending"
+                ? { backgroundColor: "#CAFFAA", color: "#20B408" }
+                : params.value === "NotAttending"
+                ? { backgroundColor: "#FFDADA", color: "#FF3333" }
+                : { backgroundColor: "#FFDDAA", color: "#FB9435" }
+            }
+          >
             {/* {params.value} */}
-            ATTENDING
+            {params.value === "NotAttending" ? "Not Attending" : params.value}
           </div>
         </div>
       ),
     },
     {
-      field: "qrValue",
+      field: "qr",
       headerName: "QR Code",
       width: 130,
       renderCell: (params) => (
@@ -42,7 +76,7 @@ const Dashboard = () => {
       ),
     },
     {
-      field: "actions",
+      field: "action",
       headerName: "Actions",
       width: 130,
       renderCell: (params) => (
@@ -130,6 +164,25 @@ const Dashboard = () => {
     },
   ];
 
+  // ---------------------------------------Search functionality--------------------------------------------
+
+  let [filtered, setfiltered] = useState([]);
+  useEffect(() => {
+    setfiltered(rsvps);
+  }, [rsvps]);
+  let [search, setsearch] = useState("");
+
+  useEffect(() => {
+    const result = rsvps?.filter((contact) => {
+      return (
+        contact?.fName.toLowerCase().match(search.toLowerCase()) ||
+        contact?.lastName.toLowerCase().match(search.toLowerCase())
+      );
+    });
+
+    setfiltered(result);
+  }, [search]);
+
   return (
     <div className="w-[100%] h-[100vh] flex">
       <Sidebar />
@@ -147,18 +200,23 @@ const Dashboard = () => {
                   type="text"
                   className="h-[100%] w-[78%] outline-none"
                   placeholder="Search"
+                  onChange={(e) => setsearch(e.target.value)}
+                  value={search}
                 />
               </div>
-              <div className="h-[42px] w-[120px] rounded-[7px] text-[#FFFFFF] bg-[#4C6156] flex justify-center items-center gap-1 cursor-pointer">
+              <div className="h-[42px] w-[140px] rounded-[7px] text-[#FFFFFF] bg-[#4C6156] flex justify-center items-center gap-1 cursor-pointer">
                 <MdOutlineFileDownload className="text-xl" />
-                <p className="font-[500] text-[15px]">Export</p>
+                <p className="font-[500] text-[15px]">
+                  <DownloadCsv data={filtered} />
+                </p>
               </div>
             </div>
           </div>
 
           <div className="w-[100%] mt-7">
             <DataGrid
-              rows={rows}
+              rows={filtered}
+              getRowId={(row) => row?._id}
               columns={columns}
               initialState={{
                 pagination: {
