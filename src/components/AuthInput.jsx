@@ -2,8 +2,9 @@ import React from "react";
 import fb from "../images/fb.png";
 import google from "../images/google.png";
 import { useNavigate } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
 
-const AuthInput = ({ isSignin, auth, setAuth, handleFunction }) => {
+const AuthInput = ({ isSignin, auth, setAuth, handleFunction, loading }) => {
   const naviget = useNavigate();
 
   return (
@@ -28,18 +29,24 @@ const AuthInput = ({ isSignin, auth, setAuth, handleFunction }) => {
             value={auth.password}
             onChange={(e) => setAuth({ ...auth, password: e.target.value })}
           />
-          {isSignin && (
+          {/* {isSignin && (
             <div className="w-[90%] flex justify-end mt-1">
               <p className="font-[400] text-[14px] text-[#333333] cursor-pointer">
                 Forgot Password?
               </p>
             </div>
-          )}
+          )} */}
           <button
             className="outline-none w-[90%] border h-[55px] rounded-[8px] bg-[#4C6156]  mt-2 text-white"
             onClick={() => handleFunction()}
           >
-            {isSignin ? "Sign in" : "Sign up"}
+            {loading ? (
+              <CircularProgress color="inherit" size="30px" />
+            ) : isSignin ? (
+              "Sign in"
+            ) : (
+              "Sign up"
+            )}
           </button>
           <div className="outline-none w-[90%] border h-[55px] rounded-[8px] border-[#B4B4B4]  mt-3 text-white flex justify-center items-center gap-2 cursor-pointer">
             <img src={fb} alt="facebook" className="h-[27px] w-[27px]" />
@@ -64,7 +71,7 @@ const AuthInput = ({ isSignin, auth, setAuth, handleFunction }) => {
               Already have an account yet?{" "}
               <span
                 className="text-[#4C6156] text-[16px] font-[600] underline cursor-pointer"
-                onClick={() => naviget("/")}
+                onClick={() => naviget("/signin")}
               >
                 Login
               </span>

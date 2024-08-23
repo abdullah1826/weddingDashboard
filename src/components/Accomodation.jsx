@@ -3,6 +3,7 @@ import { IoMdAdd } from "react-icons/io";
 import { IoAdd } from "react-icons/io5";
 import { MdCancel, MdOutlineCancel } from "react-icons/md";
 import ImageCropperModal from "./Cropper";
+import CustomSwitch from "./CustomSwitch";
 
 const Accomodation = ({ cardData, setCardData, uploadImage }) => {
   // console.log(cardData);
@@ -68,10 +69,19 @@ const Accomodation = ({ cardData, setCardData, uploadImage }) => {
   const handleClick = () => {
     fileInputRef.current.click();
   };
-
+  const handleHideShow = (check) => {
+    setCardData({ ...cardData, hideAccomodation: check });
+  };
   return (
     <div className="w-[100%] mt-12">
-      <h2 className="font-[700] text-[38px] text-[#4C6156]">Accomodation</h2>
+      <div className="w-[20%] flex justify-between items-center">
+        <p className="text-[#4C6156] text-[24px] font-[600] ">Accomodation</p>
+        <CustomSwitch
+          check={cardData?.hideAccomodation}
+          setCheck={handleHideShow}
+        />
+      </div>
+      {/* <h2 className="font-[700] text-[38px] text-[#4C6156]">Accomodation</h2> */}
 
       {Accomodations?.map((elm, i) => (
         <div className="w-[100%]  mt-5 p-5 border rounded-md relative" key={i}>

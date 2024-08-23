@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
-import { IoMdAdd } from "react-icons/io";
 import ImageCropperModal from "./Cropper";
 import { MdOutlineCancel } from "react-icons/md";
+import { IoMdAdd } from "react-icons/io";
 import CustomSwitch from "./CustomSwitch";
 
-const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
+const Details = ({ cardData, setCardData, handleChange, uploadImage }) => {
   // -----------------------------------image cropper functionality--------------------------------------
 
   const [image, setImage] = useState(null);
@@ -28,7 +28,10 @@ const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
 
   const addVenueImgs = (url) => {
     console.log("venue working image", url);
-    setCardData({ ...cardData, venueImages: [...cardData?.venueImages, url] });
+    setCardData({
+      ...cardData,
+      detailImages: [...cardData?.detailImages, url],
+    });
   };
 
   const handleCropComplete = (croppedAreaPixels) => {
@@ -50,63 +53,75 @@ const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
         ...state.slice(0, index),
         ...state.slice(index + 1),
       ];
-      setState({ ...cardData, venueImages: [...updatedArray] });
+      setState({ ...cardData, detailImages: [...updatedArray] });
     }
   };
 
-  // venueImages: []
   const handleHideShow = (check) => {
-    setCardData({ ...cardData, hideVenue: check });
+    setCardData({ ...cardData, hideDetails: check });
   };
 
   return (
     <div className="w-[100%] mt-12">
       <div className="w-[20%] flex justify-between items-center">
-        <p className="text-[#4C6156] text-[24px] font-[600] ">Venue</p>
-        <CustomSwitch check={cardData?.hideVenue} setCheck={handleHideShow} />
+        <p className="text-[#4C6156] text-[24px] font-[600] ">Details</p>
+        <CustomSwitch check={cardData?.hideDetails} setCheck={handleHideShow} />
       </div>
-      <div className="w-[100%] flex justify-between mt-3">
-        <div className="w-[49%]">
-          <p className="font-[600] text-[#4B5563] text-[15px]">Venue Name</p>
-          <input
-            type="text"
-            name="venueName"
-            onChange={handleChange}
-            value={cardData.venueName}
-            className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
-          />
-        </div>
 
-        <div className="w-[49%]">
-          <p className="font-[600] text-[#4B5563] text-[15px]">Location</p>
-          <input
-            type="text"
-            name="venueLocation"
-            onChange={handleChange}
-            value={cardData.venueLocation}
-            className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
-          />
-        </div>
-      </div>
       <div className="w-[100%] flex justify-between mt-6">
         <div className="w-[100%]">
-          <p className="font-[600] text-[#4B5563] text-[15px]">Description</p>
+          <p className="font-[600] text-[#4B5563] text-[15px]">
+            {" "}
+            Venue Map Button Description
+          </p>
           <textarea
-            value={cardData.venueDescription}
-            name="venueDescription"
+            value={cardData.venueMapButtonDesc}
+            name="venueMapButtonDesc"
             onChange={handleChange}
             className="outline-none w-[100%] h-[70px] rounded-[6px] border border-[#D1D5DB] p-2"
           ></textarea>
         </div>
       </div>
+
+      <div className="w-[100%] flex justify-between mt-6">
+        <div className="w-[100%]">
+          <p className="font-[600] text-[#4B5563] text-[15px]">
+            View Hotels Button Description
+          </p>
+          <textarea
+            value={cardData.viewHotelsButtonDesc}
+            name="viewHotelsButtonDesc"
+            onChange={handleChange}
+            className="outline-none w-[100%] h-[70px] rounded-[6px] border border-[#D1D5DB] p-2"
+          ></textarea>
+        </div>
+      </div>
+
+      <div className="w-[100%] flex justify-between mt-6">
+        <div className="w-[100%]">
+          <p className="font-[600] text-[#4B5563] text-[15px]">
+            See Our Favourite Button Description
+          </p>
+
+          <textarea
+            value={cardData.seeFavouriteButtonDesc}
+            name="seeFavouriteButtonDesc"
+            onChange={handleChange}
+            className="outline-none w-[100%] h-[70px] rounded-[6px] border border-[#D1D5DB] p-2"
+          ></textarea>
+        </div>
+      </div>
+
       <p className="font-[600] text-[#4B5563] text-[15px] mt-3">Venue images</p>
       <div className="w-[100%] flex gap-3 mt-2">
-        {cardData?.venueImages?.map((img, i) => {
+        {cardData?.detailImages?.map((img, i) => {
           return (
             <div className="h-[100px] w-[100px] rounded-md relative">
               <MdOutlineCancel
                 className="text-xl absolute right-[-10px] cursor-pointer top-[-10px]"
-                onClick={() => removeImg(i, cardData?.venueImages, setCardData)}
+                onClick={() =>
+                  removeImg(i, cardData?.detailImages, setCardData)
+                }
               />
               <img
                 src={img}
@@ -142,4 +157,4 @@ const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
   );
 };
 
-export default Venue;
+export default Details;

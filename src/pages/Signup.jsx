@@ -26,7 +26,8 @@ const Signup = () => {
           // toast.success(res?.data?.msg);
           setLoading(false);
           navigate("/dashboard/signin");
-          toast.success(res?.data?.status?.msg);
+          toast.success(res?.data?.msg);
+          setAuth({ email: "", password: "" });
         } else {
           toast.error(res?.data?.msg);
           setLoading(false);
@@ -48,6 +49,7 @@ const Signup = () => {
         auth={auth}
         setAuth={setAuth}
         handleFunction={handleSignup}
+        loading={loading}
       />
     </div>
   );

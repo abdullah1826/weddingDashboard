@@ -3,6 +3,7 @@ import { IoAdd } from "react-icons/io5";
 import { MdCancel, MdOutlineCancel } from "react-icons/md";
 import ImageCropperModal from "./Cropper";
 import { IoMdAdd } from "react-icons/io";
+import CustomSwitch from "./CustomSwitch";
 
 const Faq = ({ cardData, setCardData, uploadImage }) => {
   const { faqs } = cardData;
@@ -67,9 +68,16 @@ const Faq = ({ cardData, setCardData, uploadImage }) => {
     fileInputRef.current.click();
   };
 
+  const handleHideShow = (check) => {
+    setCardData({ ...cardData, hideFaqs: check });
+  };
+
   return (
     <div className="w-[100%] mt-12">
-      <h2 className="font-[700] text-[38px] text-[#4C6156]">Faq</h2>
+      <div className="w-[15%] flex justify-between items-center">
+        <p className="text-[#4C6156] text-[24px] font-[600] ">Faq</p>
+        <CustomSwitch check={cardData?.hideFaqs} setCheck={handleHideShow} />
+      </div>
 
       {faqs?.map((faq, i) => (
         <div key={i} className="w-[100%] mt-5 p-5 border rounded-md relative">
@@ -111,7 +119,7 @@ const Faq = ({ cardData, setCardData, uploadImage }) => {
 
       <div className="w-[100%] flex flex-col items-center">
         <p className="text-[#4C6156] text-[24px] font-[600] mt-5 w-[100%]">
-          Header Image
+          Faq background Image
         </p>
         {cardData?.faqImage ? (
           <div className="w-[606px] h-[300px] relative">

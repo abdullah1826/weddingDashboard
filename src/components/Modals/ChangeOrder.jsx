@@ -22,6 +22,7 @@ const ChangeOrder = ({
   ]);
   let sections = [
     "Banner",
+    "Details",
     "Venue",
     "Bridal Party",
     "Accomodation",

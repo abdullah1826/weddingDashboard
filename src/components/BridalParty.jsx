@@ -5,6 +5,7 @@ import { IoMdAdd } from "react-icons/io";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import men from "../images/men.jpg";
 import women from "../images/women.jpg";
+import CustomSwitch from "./CustomSwitch";
 
 const BridalParty = ({ cardData, setCardData, handleChange, uploadImage }) => {
   const [open, setOpen] = useState(false);
@@ -105,9 +106,19 @@ const BridalParty = ({ cardData, setCardData, handleChange, uploadImage }) => {
     }
   };
 
+  const handleHideShow = (check) => {
+    setCardData({ ...cardData, hideBridalParty: check });
+  };
+
   return (
     <div className="w-[100%] mt-12">
-      <h2 className="font-[700] text-[38px] text-[#4C6156]">Bridal Party</h2>
+      <div className="w-[25%] flex justify-between items-center">
+        <p className="text-[#4C6156] text-[24px] font-[600] ">Bridal Party</p>
+        <CustomSwitch
+          check={cardData?.hideBridalParty}
+          setCheck={handleHideShow}
+        />
+      </div>
 
       {/* Grooms Men Section */}
       <p className="text-[#4C6156] text-[24px] font-[600] mt-3">Grooms Men</p>

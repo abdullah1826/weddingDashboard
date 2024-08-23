@@ -2,6 +2,8 @@ import React, { useRef, useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import ImageCropperModal from "./Cropper";
 import { MdOutlineCancel } from "react-icons/md";
+import CustomSwitch from "./CustomSwitch";
+import { MdCancel } from "react-icons/md";
 
 const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
   // -----------------------------------image cropper functionality--------------------------------------
@@ -43,9 +45,17 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
     fileInputRef.current.click();
   };
 
+  const handleHideShow = (check) => {
+    setCardData({ ...cardData, hidebanner: check });
+  };
+
   return (
-    <div className="w-[100%]">
-      <p className="text-[#4C6156] text-[24px] font-[600] mt-5">Header</p>
+    <div className="w-[100%] mt-5">
+      <div className="w-[20%] flex justify-between items-center">
+        <p className="text-[#4C6156] text-[24px] font-[600] ">Header</p>
+        <CustomSwitch check={cardData?.hidebanner} setCheck={handleHideShow} />
+      </div>
+
       <div className="w-[100%] flex justify-between mt-3">
         <div className="w-[24%]">
           <p className="font-[600] text-[#4B5563] text-[15px]">Bride Name</p>
@@ -113,8 +123,8 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
         </p>
         {cardData?.headerImage ? (
           <div className="w-[606px] h-[300px] relative">
-            <MdOutlineCancel
-              className="text-3xl absolute right-[-10px] cursor-pointer top-[-10px] "
+            <MdCancel
+              className="text-3xl absolute right-[-10px] cursor-pointer top-[-10px] text-[#4C6156]"
               onClick={() => setCardData({ ...cardData, headerImage: "" })}
             />
             <img

@@ -5,7 +5,7 @@ import { RiVerifiedBadgeFill } from "react-icons/ri";
 const SelectFonts = ({ cardData, setCardData }) => {
   return (
     <div className="w-[100%] mt-12">
-      <h2 className="font-[700] text-[30px] text-[#4C6156]">Select Fonts</h2>
+      <p className="text-[#4C6156] text-[24px] font-[600] ">Select Fonts</p>
       <div className="w-[100%] h-[100px] border rounded-md mt-2 flex justify-around items-center flex-wrap">
         <div
           className="w-[22%] h-[70px] rounded-full border flex justify-center items-center font-[500] text-2xl cursor-pointer relative"

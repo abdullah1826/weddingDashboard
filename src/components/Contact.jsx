@@ -3,6 +3,7 @@ import { IoAdd } from "react-icons/io5";
 import { MdCancel, MdOutlineCancel } from "react-icons/md";
 import ImageCropperModal from "./Cropper";
 import { IoMdAdd } from "react-icons/io";
+import CustomSwitch from "./CustomSwitch";
 
 const Contact = ({ cardData, setCardData, uploadImage }) => {
   const { contacts } = cardData;
@@ -79,9 +80,21 @@ const Contact = ({ cardData, setCardData, uploadImage }) => {
     fileInputRef.current.click();
   };
 
+  const handleHideShow = (check) => {
+    setCardData({ ...cardData, hideConactUs: check });
+  };
+
   return (
     <div className="w-[100%] mt-12">
-      <h2 className="font-[700] text-[38px] text-[#4C6156]">Contact Details</h2>
+      <div className="w-[30%] flex justify-between items-center">
+        <p className="text-[#4C6156] text-[24px] font-[600] ">
+          Contact Details
+        </p>
+        <CustomSwitch
+          check={cardData?.hideConactUs}
+          setCheck={handleHideShow}
+        />
+      </div>
 
       {contacts?.map((contact, i) => (
         <div key={i} className="w-[100%] mt-5 p-5 border rounded-md relative">
@@ -132,10 +145,9 @@ const Contact = ({ cardData, setCardData, uploadImage }) => {
         <IoAdd className="text-[#4C6156] text-3xl" />
         <p className="text-[#4C6156] font-[600]">Add New Section</p>
       </div>
-
       <div className="w-[100%] flex flex-col items-center">
         <p className="text-[#4C6156] text-[24px] font-[600] mt-5 w-[100%]">
-          Header Image
+          Contacts background Image
         </p>
         {cardData?.contactBgImage ? (
           <div className="w-[606px] h-[300px] relative">

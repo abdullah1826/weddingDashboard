@@ -29,7 +29,7 @@ const Signin = () => {
           setLoading(false);
           localStorage.setItem("weddId", res?.data?.token);
           toast.success(res.data.msg);
-          navigate("/dashboard");
+          navigate("/");
           window.location.reload();
         } else {
           toast.error(res?.data?.msg);
@@ -52,6 +52,7 @@ const Signin = () => {
         auth={auth}
         setAuth={setAuth}
         handleFunction={handleSignIn}
+        loading={loading}
       />
     </div>
   );

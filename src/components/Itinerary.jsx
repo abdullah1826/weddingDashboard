@@ -3,6 +3,7 @@ import { IoAdd } from "react-icons/io5";
 import { MdCancel, MdOutlineCancel } from "react-icons/md";
 import ImageCropperModal from "./Cropper";
 import { IoMdAdd } from "react-icons/io";
+import CustomSwitch from "./CustomSwitch";
 
 const Itinerary = ({ cardData, setCardData, uploadImage }) => {
   // -----------------------------------image cropper functionality--------------------------------------
@@ -225,9 +226,19 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
     </div>
   );
 
+  const handleHideShow = (check) => {
+    setCardData({ ...cardData, hideItinerary: check });
+  };
+
   return (
     <div className="w-[100%] mt-12">
-      <h2 className="font-[700] text-[38px] text-[#4C6156]">Itinerary</h2>
+      <div className="w-[20%] flex justify-between items-center">
+        <p className="text-[#4C6156] text-[24px] font-[600] ">Itinerary</p>
+        <CustomSwitch
+          check={cardData?.hideItinerary}
+          setCheck={handleHideShow}
+        />
+      </div>
 
       {renderEvent("Event 1", e1, setE1, 1, "event1")}
       {renderEvent("Event 2", e2, setE2, 2, "event2")}
