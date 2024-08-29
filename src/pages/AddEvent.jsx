@@ -41,8 +41,10 @@ const AddEvent = () => {
     brideName: "",
     groomName: "",
     welcomeText: "",
+    logo: "",
     eventDate: "",
     location: "",
+    time: "",
     headerImage: "",
     venueName: "",
     venueLocation: "",
@@ -153,8 +155,7 @@ const AddEvent = () => {
         },
       });
 
-      if (response.data.status === true) {
-        console.log(response.data.data);
+      if (response.data.data) {
         setCardData(response.data.data);
       }
     };
@@ -209,7 +210,7 @@ const AddEvent = () => {
       })
       .catch((err) => {
         console.log(err);
-        toast.error(err.message);
+        toast.error(err.response.data.message);
         setsubmitLoading(false);
       });
   };
@@ -222,7 +223,7 @@ const AddEvent = () => {
           <CircularProgress size={50} color="inherit" />
         </div>
       ) : (
-        <div className="w-[78%] h-[100%] border flex flex-col items-center overflow-y-scroll">
+        <div className="w-[78%] h-[100%] border flex flex-col items-center overflow-y-scroll ">
           <Toaster />
           <ChangeOrder
             orderModal={orderModal}
@@ -318,10 +319,12 @@ const AddEvent = () => {
             />
             <SelectColor cardData={cardData} setCardData={setCardData} />
             <SelectFonts cardData={cardData} setCardData={setCardData} />
-            <div className="w-[100%] flex justify-end items-center mt-4">
-              <div className="w-[50%] flex gap-3 justify-end">
+            <br />
+            <br />
+            <div className="w-[78%] h-[70px] flex justify-end items-center mt-4 fixed bottom-0   right-0">
+              <div className="w-[30%] flex gap-3 justify-center">
                 <div
-                  className="w-[40%] h-[50px] rounded-full bg-[#4C6156] text-white flex justify-center items-center gap-3 cursor-pointer"
+                  className="w-[70%] h-[50px] rounded-full bg-[#4C6156] text-white flex justify-center items-center gap-3 cursor-pointer"
                   onClick={() => handleCreate()}
                 >
                   {submitloading ? (
@@ -332,7 +335,7 @@ const AddEvent = () => {
 
                   {/* <HiArrowsUpDown className="text-xl" /> */}
                 </div>
-                {cardData?._id && (
+                {/* {cardData?._id && (
                   <div
                     className="w-[30%] h-[50px] rounded-full bg-[#4C6156] text-white flex justify-center items-center gap-3 cursor-pointer"
                     onClick={() => window.open(profile + cardData?._id)}
@@ -340,7 +343,7 @@ const AddEvent = () => {
                     Preview
                     <FaEye className="text-xl" />
                   </div>
-                )}
+                )} */}
               </div>
             </div>
             <br />

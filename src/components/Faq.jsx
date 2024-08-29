@@ -4,9 +4,10 @@ import { MdCancel, MdOutlineCancel } from "react-icons/md";
 import ImageCropperModal from "./Cropper";
 import { IoMdAdd } from "react-icons/io";
 import CustomSwitch from "./CustomSwitch";
+import Instructions from "./Instructions";
 
 const Faq = ({ cardData, setCardData, uploadImage }) => {
-  const { faqs } = cardData;
+  const faqs = cardData?.faqs;
 
   const pushNewSection = () => {
     const updatedFaqs = [...faqs, { qs: "", ans: "" }];
@@ -77,6 +78,7 @@ const Faq = ({ cardData, setCardData, uploadImage }) => {
       <div className="w-[15%] flex justify-between items-center">
         <p className="text-[#4C6156] text-[24px] font-[600] ">Faq</p>
         <CustomSwitch check={cardData?.hideFaqs} setCheck={handleHideShow} />
+        <Instructions />
       </div>
 
       {faqs?.map((faq, i) => (

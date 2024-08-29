@@ -4,6 +4,7 @@ import { MdCancel, MdOutlineCancel } from "react-icons/md";
 import ImageCropperModal from "./Cropper";
 import { IoMdAdd } from "react-icons/io";
 import CustomSwitch from "./CustomSwitch";
+import Instructions from "./Instructions";
 
 const Itinerary = ({ cardData, setCardData, uploadImage }) => {
   // -----------------------------------image cropper functionality--------------------------------------
@@ -238,6 +239,7 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
           check={cardData?.hideItinerary}
           setCheck={handleHideShow}
         />
+        <Instructions />
       </div>
 
       {renderEvent("Event 1", e1, setE1, 1, "event1")}

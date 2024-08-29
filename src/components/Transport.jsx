@@ -4,12 +4,17 @@ import { IoAdd } from "react-icons/io5";
 import { MdCancel, MdOutlineCancel } from "react-icons/md";
 import ImageCropperModal from "./Cropper";
 import CustomSwitch from "./CustomSwitch";
+import Instructions from "./Instructions";
 
 const PlacesWeLove = ({ cardData, setCardData, uploadImage }) => {
-  const { placesWeLove, placesBackground } = cardData;
+  const placesWeLove = cardData?.placesWeLove;
+  const placesBackground = cardData?.placesBackground;
 
   const pushNewSection = () => {
-    const updatedPlaces = [...placesWeLove, { name: "", description: "" }];
+    const updatedPlaces = [
+      ...placesWeLove,
+      { name: "", description: "", bookingUrl: "" },
+    ];
     setCardData({ ...cardData, placesWeLove: updatedPlaces });
   };
 
@@ -62,9 +67,10 @@ const PlacesWeLove = ({ cardData, setCardData, uploadImage }) => {
       <div className="w-[30%] flex justify-between items-center">
         <p className="text-[#4C6156] text-[24px] font-[600] ">Places We Love</p>
         <CustomSwitch check={cardData?.hidePlaces} setCheck={handleHideShow} />
+        <Instructions />
       </div>
 
-      {placesWeLove.map((place, i) => (
+      {placesWeLove?.map((place, i) => (
         <div key={i} className="w-[100%] mt-5 p-5 border rounded-md relative">
           {i !== 0 && (
             <MdCancel
@@ -89,6 +95,25 @@ const PlacesWeLove = ({ cardData, setCardData, uploadImage }) => {
               />
             </div>
           </div>
+
+          <div className="w-[100%] mt-3">
+            <div className="w-[100%]">
+              <p className="font-[600] text-[#4B5563] text-[15px]">
+                Booking Url
+              </p>
+              <input
+                type="text"
+                value={place.bookingUrl}
+                onChange={(e) => {
+                  const updatedPlaces = [...placesWeLove];
+                  updatedPlaces[i].bookingUrl = e.target.value;
+                  setCardData({ ...cardData, placesWeLove: updatedPlaces });
+                }}
+                className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
+              />
+            </div>
+          </div>
+
           <div className="w-[100%] mt-3">
             <p className="font-[600] text-[#4B5563] text-[15px]">Description</p>
             <textarea

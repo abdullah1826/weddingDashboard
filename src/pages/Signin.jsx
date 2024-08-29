@@ -31,14 +31,12 @@ const Signin = () => {
           toast.success(res.data.msg);
           navigate("/");
           window.location.reload();
-        } else {
-          toast.error(res?.data?.msg);
-          setLoading(false);
         }
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err);
-        toast.error(err.response.data.msg);
+        toast.error(err.response.data.message);
       });
     console.log("api end working......");
   };

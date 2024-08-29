@@ -4,6 +4,7 @@ import ImageCropperModal from "./Cropper";
 import { MdCancel, MdOutlineCancel } from "react-icons/md";
 import { IoAdd } from "react-icons/io5";
 import CustomSwitch from "./CustomSwitch";
+import Instructions from "./Instructions";
 
 const WeddingRegistery = ({
   cardData,
@@ -99,6 +100,7 @@ const WeddingRegistery = ({
           check={cardData?.hideRegistry}
           setCheck={handleHideShow}
         />
+          <Instructions />
       </div>
 
       <div className="w-[100%] flex justify-between mt-3">

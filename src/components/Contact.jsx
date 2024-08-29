@@ -4,6 +4,7 @@ import { MdCancel, MdOutlineCancel } from "react-icons/md";
 import ImageCropperModal from "./Cropper";
 import { IoMdAdd } from "react-icons/io";
 import CustomSwitch from "./CustomSwitch";
+import Instructions from "./Instructions";
 
 const Contact = ({ cardData, setCardData, uploadImage }) => {
   const { contacts } = cardData;
@@ -94,6 +95,7 @@ const Contact = ({ cardData, setCardData, uploadImage }) => {
           check={cardData?.hideConactUs}
           setCheck={handleHideShow}
         />
+        <Instructions />
       </div>
 
       {contacts?.map((contact, i) => (

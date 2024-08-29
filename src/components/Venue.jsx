@@ -3,6 +3,7 @@ import { IoMdAdd } from "react-icons/io";
 import ImageCropperModal from "./Cropper";
 import { MdOutlineCancel } from "react-icons/md";
 import CustomSwitch from "./CustomSwitch";
+import Instructions from "./Instructions";
 
 const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
   // -----------------------------------image cropper functionality--------------------------------------
@@ -64,6 +65,7 @@ const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
       <div className="w-[20%] flex justify-between items-center">
         <p className="text-[#4C6156] text-[24px] font-[600] ">Venue</p>
         <CustomSwitch check={cardData?.hideVenue} setCheck={handleHideShow} />
+        <Instructions />
       </div>
       <div className="w-[100%] flex justify-between mt-3">
         <div className="w-[49%]">
@@ -72,7 +74,7 @@ const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
             type="text"
             name="venueName"
             onChange={handleChange}
-            value={cardData.venueName}
+            value={cardData?.venueName}
             className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
           />
         </div>
@@ -83,7 +85,7 @@ const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
             type="text"
             name="venueLocation"
             onChange={handleChange}
-            value={cardData.venueLocation}
+            value={cardData?.venueLocation}
             className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
           />
         </div>
@@ -92,7 +94,7 @@ const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
         <div className="w-[100%]">
           <p className="font-[600] text-[#4B5563] text-[15px]">Description</p>
           <textarea
-            value={cardData.venueDescription}
+            value={cardData?.venueDescription}
             name="venueDescription"
             onChange={handleChange}
             className="outline-none w-[100%] h-[70px] rounded-[6px] border border-[#D1D5DB] p-2"

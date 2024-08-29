@@ -3,6 +3,7 @@ import ImageCropperModal from "./Cropper";
 import { MdOutlineCancel } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 import CustomSwitch from "./CustomSwitch";
+import Instructions from "./Instructions";
 
 const Details = ({ cardData, setCardData, handleChange, uploadImage }) => {
   // -----------------------------------image cropper functionality--------------------------------------
@@ -66,6 +67,7 @@ const Details = ({ cardData, setCardData, handleChange, uploadImage }) => {
       <div className="w-[20%] flex justify-between items-center">
         <p className="text-[#4C6156] text-[24px] font-[600] ">Details</p>
         <CustomSwitch check={cardData?.hideDetails} setCheck={handleHideShow} />
+        <Instructions />
       </div>
 
       <div className="w-[100%] flex justify-between mt-6">
@@ -75,7 +77,7 @@ const Details = ({ cardData, setCardData, handleChange, uploadImage }) => {
             Venue Map Button Description
           </p>
           <textarea
-            value={cardData.venueMapButtonDesc}
+            value={cardData?.venueMapButtonDesc}
             name="venueMapButtonDesc"
             onChange={handleChange}
             className="outline-none w-[100%] h-[70px] rounded-[6px] border border-[#D1D5DB] p-2"
@@ -89,7 +91,7 @@ const Details = ({ cardData, setCardData, handleChange, uploadImage }) => {
             View Hotels Button Description
           </p>
           <textarea
-            value={cardData.viewHotelsButtonDesc}
+            value={cardData?.viewHotelsButtonDesc}
             name="viewHotelsButtonDesc"
             onChange={handleChange}
             className="outline-none w-[100%] h-[70px] rounded-[6px] border border-[#D1D5DB] p-2"

@@ -6,6 +6,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import men from "../images/men.jpg";
 import women from "../images/women.jpg";
 import CustomSwitch from "./CustomSwitch";
+import Instructions from "./Instructions";
 
 const BridalParty = ({ cardData, setCardData, handleChange, uploadImage }) => {
   const [open, setOpen] = useState(false);
@@ -118,6 +119,7 @@ const BridalParty = ({ cardData, setCardData, handleChange, uploadImage }) => {
           check={cardData?.hideBridalParty}
           setCheck={handleHideShow}
         />
+        <Instructions />
       </div>
 
       {/* Grooms Men Section */}

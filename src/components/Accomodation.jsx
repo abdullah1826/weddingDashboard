@@ -4,17 +4,18 @@ import { IoAdd } from "react-icons/io5";
 import { MdCancel, MdOutlineCancel } from "react-icons/md";
 import ImageCropperModal from "./Cropper";
 import CustomSwitch from "./CustomSwitch";
+import Instructions from "./Instructions";
 
 const Accomodation = ({ cardData, setCardData, uploadImage }) => {
   // console.log(cardData);
-  const [Accomodations, setAccomodations] = useState(cardData.accomodation);
+  const [Accomodations, setAccomodations] = useState(cardData?.accomodation);
 
   useEffect(() => {
     setAccomodations(cardData.accomodation);
   }, [cardData.accomodation]);
 
   const pushNewSection = () => {
-    const newSection = { name: "", description: "" };
+    const newSection = { name: "", description: "", bookingUrl: "" };
     setAccomodations([...Accomodations, newSection]);
     setCardData({ ...cardData, accomodation: [...Accomodations, newSection] });
   };
@@ -22,8 +23,8 @@ const Accomodation = ({ cardData, setCardData, uploadImage }) => {
   const removeSection = (index) => {
     if (index > -1 && index < Accomodations.length) {
       const updatedArray = [
-        ...Accomodations.slice(0, index),
-        ...Accomodations.slice(index + 1),
+        ...Accomodations?.slice(0, index),
+        ...Accomodations?.slice(index + 1),
       ];
       setAccomodations(updatedArray);
       setCardData({ ...cardData, accomodation: updatedArray });
@@ -80,6 +81,7 @@ const Accomodation = ({ cardData, setCardData, uploadImage }) => {
           check={cardData?.hideAccomodation}
           setCheck={handleHideShow}
         />
+        <Instructions />
       </div>
       {/* <h2 className="font-[700] text-[38px] text-[#4C6156]">Accomodation</h2> */}
 
@@ -104,6 +106,23 @@ const Accomodation = ({ cardData, setCardData, uploadImage }) => {
               />
             </div>
           </div>
+
+          <div className="w-[100%] mt-3">
+            <div className="w-[100%]">
+              <p className="font-[600] text-[#4B5563] text-[15px]">
+                Booking Url
+              </p>
+              <input
+                type="text"
+                className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
+                value={elm.bookingUrl}
+                onChange={(e) =>
+                  handleInputChange(i, "bookingUrl", e.target.value)
+                }
+              />
+            </div>
+          </div>
+
           <div className="w-[100%] mt-3">
             <p className="font-[600] text-[#4B5563] text-[15px]">Description</p>
             <textarea
