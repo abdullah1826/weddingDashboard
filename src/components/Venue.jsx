@@ -71,6 +71,8 @@ const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
         <div className="w-[49%]">
           <p className="font-[600] text-[#4B5563] text-[15px]">Venue Name</p>
           <input
+            required={!cardData?.hideVenue}
+            autoComplete={false}
             type="text"
             name="venueName"
             onChange={handleChange}
@@ -82,6 +84,8 @@ const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
         <div className="w-[49%]">
           <p className="font-[600] text-[#4B5563] text-[15px]">Location</p>
           <input
+            required={!cardData?.hideVenue}
+            autoComplete={false}
             type="text"
             name="venueLocation"
             onChange={handleChange}
@@ -94,6 +98,8 @@ const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
         <div className="w-[100%]">
           <p className="font-[600] text-[#4B5563] text-[15px]">Description</p>
           <textarea
+            required={!cardData?.hideVenue}
+            autoComplete={false}
             value={cardData?.venueDescription}
             name="venueDescription"
             onChange={handleChange}

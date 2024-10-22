@@ -21,13 +21,13 @@ const Faq = ({ cardData, setCardData, uploadImage }) => {
 
   const handleQuestionChange = (index, value) => {
     const updatedFaqs = [...faqs];
-    updatedFaqs[index].qs = value;
+    updatedFaqs[index].question = value;
     setCardData({ ...cardData, faqs: updatedFaqs });
   };
 
   const handleAnswerChange = (index, value) => {
     const updatedFaqs = [...faqs];
-    updatedFaqs[index].ans = value;
+    updatedFaqs[index].answer = value;
     setCardData({ ...cardData, faqs: updatedFaqs });
   };
 
@@ -93,6 +93,8 @@ const Faq = ({ cardData, setCardData, uploadImage }) => {
             <div className="w-[100%]">
               <p className="font-[600] text-[#4B5563] text-[15px]">Question</p>
               <input
+                required={!cardData?.hideFaqs}
+                autoComplete={false}
                 type="text"
                 value={faq.question}
                 onChange={(e) => handleQuestionChange(i, e.target.value)}
@@ -103,6 +105,8 @@ const Faq = ({ cardData, setCardData, uploadImage }) => {
           <div className="w-[100%] mt-3">
             <p className="font-[600] text-[#4B5563] text-[15px]">Answer</p>
             <textarea
+              required={!cardData?.hideFaqs}
+              autoComplete={false}
               value={faq.answer}
               onChange={(e) => handleAnswerChange(i, e.target.value)}
               className="outline-none w-[100%] h-[60px] rounded-[6px] border border-[#D1D5DB] p-2"

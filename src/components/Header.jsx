@@ -11,6 +11,9 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
   const [image, setImage] = useState(null);
   const [open, setOpen] = useState(false);
   const [isLogo, setIsLogo] = useState(false);
+  const today = new Date().toISOString().split("T")[0];
+  const now = new Date();
+  const currentTime = now.toTimeString().split(" ")[0].slice(0, 5);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -86,23 +89,27 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
 
       <div className="w-[100%] flex justify-between mt-3">
         <div className="w-[24%]">
-          <p className="font-[600] text-[#4B5563] text-[15px]">Bride Name</p>
+          <p className="font-[600] text-[#4B5563] text-[15px]">Groom Name</p>
           <input
             type="text"
-            name="brideName"
+            name="groomName"
+            required={!cardData?.hidebanner}
+            autoComplete={false}
             onChange={handleChange}
-            value={cardData?.brideName}
+            value={cardData?.groomName}
             className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
           />
         </div>
 
         <div className="w-[24%]">
-          <p className="font-[600] text-[#4B5563] text-[15px]">Groom Name</p>
+          <p className="font-[600] text-[#4B5563] text-[15px]">Bride Name</p>
           <input
             type="text"
-            name="groomName"
+            name="brideName"
+            required={!cardData?.hidebanner}
+            autoComplete={false}
             onChange={handleChange}
-            value={cardData?.groomName}
+            value={cardData?.brideName}
             className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
           />
         </div>
@@ -114,6 +121,8 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
           <input
             type="text"
             name="welcomeText"
+            required={!cardData?.hidebanner}
+            autoComplete={false}
             onChange={handleChange}
             value={cardData?.welcomeText}
             className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
@@ -127,6 +136,8 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
           <input
             type="text"
             name="location"
+            required={!cardData?.hidebanner}
+            autoComplete={false}
             onChange={handleChange}
             value={cardData?.location}
             className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
@@ -137,7 +148,10 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
           <p className="font-[600] text-[#4B5563] text-[15px]">Date</p>
           <input
             type="date"
+            min={today}
             name="eventDate"
+            required={!cardData?.hidebanner}
+            autoComplete={false}
             onChange={handleChange}
             value={cardData?.eventDate}
             className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
@@ -162,16 +176,24 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
           <input
             type="time"
             value={cardData?.time}
+            required={!cardData?.hidebanner}
+            autoComplete={false}
             name="time"
             onChange={handleChange}
             className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
           />
         </div>
 
-        <div className="w-[50%] flex justify-center items-center gap-2">
-          {/* <p className="font-[600] text-[#4B5563] text-[15px]">Add logo</p> */}
-          <div className="h-[40px] rounded-[6px] border border-[#D1D5DB] flex items-center pl-2 mb-4 ">
-            <input type="file" onChange={handleLogoFileChange} />
+        <div className="w-[48%] flex justify-start items-center gap-2 ">
+          <div>
+            <p className="font-[600] text-[#4B5563] text-[15px]">Add logo</p>
+            <div className="h-[40px] pr-3 rounded-[6px]  border-[#D1D5DB] flex items-center pl-2 mb-8 ">
+              <input
+                type="file"
+                onChange={handleLogoFileChange}
+                className="w-[110px] border"
+              />
+            </div>
           </div>
           {cardData?.logo ? (
             <div className="h-[100px] w-[100px] rounded-md relative border">

@@ -28,7 +28,7 @@ import Details from "../components/Details";
 import io from "socket.io-client";
 
 const AddEvent = () => {
-  const profile = "https://welcomepass.netlify.app/";
+  const profile = "https://card.thewelcomepass.com/";
   let baseUrl = import.meta.env.VITE_BASE_URL;
   const [loading, setLoading] = useState(false);
   const [submitloading, setsubmitLoading] = useState(false);
@@ -189,7 +189,8 @@ const AddEvent = () => {
 
   //---------------------------------------handle create card----------------------------------
   const token = localStorage.getItem("weddId");
-  const handleCreate = async () => {
+  const handleCreate = async (e) => {
+    e.preventDefault();
     setsubmitLoading(true);
     const response = await axios
       .post(`${baseUrl}/card/createCard`, cardData, {
@@ -254,88 +255,90 @@ const AddEvent = () => {
                 )}
               </div>
             </div>
+            <form onSubmit={handleCreate}>
+              <Header
+                cardData={cardData}
+                setCardData={setCardData}
+                handleChange={handleChange}
+                uploadImage={uploadImage}
+              />
+              <Details
+                cardData={cardData}
+                setCardData={setCardData}
+                handleChange={handleChange}
+                uploadImage={uploadImage}
+              />
+              <Venue
+                cardData={cardData}
+                setCardData={setCardData}
+                handleChange={handleChange}
+                uploadImage={uploadImage}
+              />
+              <BridalParty
+                cardData={cardData}
+                setCardData={setCardData}
+                handleChange={handleChange}
+                uploadImage={uploadImage}
+              />
+              <Itinerary
+                cardData={cardData}
+                setCardData={setCardData}
+                handleChange={handleChange}
+                uploadImage={uploadImage}
+              />
+              <Accomodation
+                cardData={cardData}
+                setCardData={setCardData}
+                uploadImage={uploadImage}
+              />
+              <PlacesWeLove
+                cardData={cardData}
+                setCardData={setCardData}
+                uploadImage={uploadImage}
+              />
+              {/* <TihingToDo /> */}
+              <Faq
+                cardData={cardData}
+                setCardData={setCardData}
+                uploadImage={uploadImage}
+              />
+              <Contact
+                cardData={cardData}
+                setCardData={setCardData}
+                uploadImage={uploadImage}
+              />
+              <WeddingRegistery
+                cardData={cardData}
+                setCardData={setCardData}
+                handleChange={handleChange}
+                uploadImage={uploadImage}
+              />
 
-            <Header
-              cardData={cardData}
-              setCardData={setCardData}
-              handleChange={handleChange}
-              uploadImage={uploadImage}
-            />
-            <Details
-              cardData={cardData}
-              setCardData={setCardData}
-              handleChange={handleChange}
-              uploadImage={uploadImage}
-            />
-            <Venue
-              cardData={cardData}
-              setCardData={setCardData}
-              handleChange={handleChange}
-              uploadImage={uploadImage}
-            />
-            <BridalParty
-              cardData={cardData}
-              setCardData={setCardData}
-              handleChange={handleChange}
-              uploadImage={uploadImage}
-            />
-            <Itinerary
-              cardData={cardData}
-              setCardData={setCardData}
-              handleChange={handleChange}
-              uploadImage={uploadImage}
-            />
-            <Accomodation
-              cardData={cardData}
-              setCardData={setCardData}
-              uploadImage={uploadImage}
-            />
-            <PlacesWeLove
-              cardData={cardData}
-              setCardData={setCardData}
-              uploadImage={uploadImage}
-            />
-            {/* <TihingToDo /> */}
-            <Faq
-              cardData={cardData}
-              setCardData={setCardData}
-              uploadImage={uploadImage}
-            />
-            <Contact
-              cardData={cardData}
-              setCardData={setCardData}
-              uploadImage={uploadImage}
-            />
-            <WeddingRegistery
-              cardData={cardData}
-              setCardData={setCardData}
-              handleChange={handleChange}
-              uploadImage={uploadImage}
-            />
-            <RsvpBg
-              cardData={cardData}
-              setCardData={setCardData}
-              uploadImage={uploadImage}
-            />
-            <SelectColor cardData={cardData} setCardData={setCardData} />
-            <SelectFonts cardData={cardData} setCardData={setCardData} />
-            <br />
-            <br />
-            <div className="w-[78%] h-[70px] flex justify-end items-center mt-4 fixed bottom-0   right-0">
-              <div className="w-[30%] flex gap-3 justify-center">
-                <div
-                  className="w-[70%] h-[50px] rounded-full bg-[#4C6156] text-white flex justify-center items-center gap-3 cursor-pointer"
-                  onClick={() => handleCreate()}
-                >
-                  {submitloading ? (
-                    <CircularProgress size={30} color="inherit" />
-                  ) : (
-                    "Save Changes"
-                  )}
+              <RsvpBg
+                cardData={cardData}
+                setCardData={setCardData}
+                uploadImage={uploadImage}
+              />
+              <SelectColor cardData={cardData} setCardData={setCardData} />
+              <SelectFonts cardData={cardData} setCardData={setCardData} />
+              <br />
+              <br />
+              <div className="w-[78%] h-[70px] flex justify-end items-center mt-4 fixed bottom-0   right-0">
+                <div className="w-[30%] flex gap-3 justify-center">
+                  <button
+                    className="w-[70%] h-[50px] rounded-full bg-[#4C6156] text-white flex justify-center items-center gap-3 cursor-pointer"
+                    // onClick={() => handleCreate()}
+                    type="submit"
+                  >
+                    {submitloading ? (
+                      <CircularProgress size={30} color="inherit" />
+                    ) : (
+                      "Save Changes"
+                    )}
 
-                  {/* <HiArrowsUpDown className="text-xl" /> */}
-                </div>
-                {/* {cardData?._id && (
+                    {/* <HiArrowsUpDown className="text-xl" /> */}
+                  </button>
+                  {/* {cardData?._id && (
                   <div
                     className="w-[30%] h-[50px] rounded-full bg-[#4C6156] text-white flex justify-center items-center gap-3 cursor-pointer"
                     onClick={() => window.open(profile + cardData?._id)}
@@ -344,8 +347,9 @@ const AddEvent = () => {
                     <FaEye className="text-xl" />
                   </div>
                 )} */}
+                </div>
               </div>
-            </div>
+            </form>
             <br />
           </div>
         </div>

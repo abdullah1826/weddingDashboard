@@ -77,6 +77,8 @@ const Details = ({ cardData, setCardData, handleChange, uploadImage }) => {
             Venue Map Button Description
           </p>
           <textarea
+            required={!cardData?.hideDetails}
+            autoComplete={false}
             value={cardData?.venueMapButtonDesc}
             name="venueMapButtonDesc"
             onChange={handleChange}
@@ -91,6 +93,8 @@ const Details = ({ cardData, setCardData, handleChange, uploadImage }) => {
             View Hotels Button Description
           </p>
           <textarea
+            required={!cardData?.hideDetails}
+            autoComplete={false}
             value={cardData?.viewHotelsButtonDesc}
             name="viewHotelsButtonDesc"
             onChange={handleChange}
@@ -106,6 +110,8 @@ const Details = ({ cardData, setCardData, handleChange, uploadImage }) => {
           </p>
 
           <textarea
+            required={!cardData?.hideDetails}
+            autoComplete={false}
             value={cardData.seeFavouriteButtonDesc}
             name="seeFavouriteButtonDesc"
             onChange={handleChange}

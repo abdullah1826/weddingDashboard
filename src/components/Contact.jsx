@@ -110,6 +110,8 @@ const Contact = ({ cardData, setCardData, uploadImage }) => {
             <div className="w-[49%]">
               <p className="font-[600] text-[#4B5563] text-[15px]">Title</p>
               <input
+                required={!cardData?.hideConactUs}
+                autoComplete={false}
                 type="text"
                 value={contact.title}
                 onChange={(e) => handleTitleChange(i, e.target.value)}
@@ -122,6 +124,8 @@ const Contact = ({ cardData, setCardData, uploadImage }) => {
                 Contact Number
               </p>
               <input
+                required={!cardData?.hideConactUs}
+                autoComplete={false}
                 type="text"
                 value={contact.number}
                 onChange={(e) => handleNumberChange(i, e.target.value)}
@@ -132,6 +136,8 @@ const Contact = ({ cardData, setCardData, uploadImage }) => {
           <div className="w-[100%] mt-3">
             <p className="font-[600] text-[#4B5563] text-[15px]">Description</p>
             <textarea
+              required={!cardData?.hideConactUs}
+              autoComplete={false}
               value={contact.description}
               onChange={(e) => handleDescriptionChange(i, e.target.value)}
               className="outline-none w-[100%] h-[60px] rounded-[6px] border border-[#D1D5DB] p-2 "

@@ -62,8 +62,10 @@ const WeddingRegistery = ({
   // venueImages: []
 
   const pushNewSection = () => {
-    const updatedFaqs = [...cardData?.registries, { title: "", url: "" }];
-    setCardData({ ...cardData, registries: updatedFaqs });
+    if (cardData?.registries?.length < 4) {
+      const updatedFaqs = [...cardData?.registries, { title: "", url: "" }];
+      setCardData({ ...cardData, registries: updatedFaqs });
+    }
   };
 
   const removeSection = (index) => {
@@ -100,13 +102,15 @@ const WeddingRegistery = ({
           check={cardData?.hideRegistry}
           setCheck={handleHideShow}
         />
-          <Instructions />
+        <Instructions />
       </div>
 
       <div className="w-[100%] flex justify-between mt-3">
         <div className="w-[100%]">
           <p className="font-[600] text-[#4B5563] text-[15px]">Title</p>
           <input
+            required={!cardData?.hideRegistry}
+            autoComplete={false}
             type="text"
             name="registeryTitle"
             onChange={handleChange}
@@ -119,6 +123,8 @@ const WeddingRegistery = ({
         <div className="w-[100%]">
           <p className="font-[600] text-[#4B5563] text-[15px]">Description</p>
           <textarea
+            required={!cardData?.hideRegistry}
+            autoComplete={false}
             value={cardData.registeryDescription}
             name="registeryDescription"
             onChange={handleChange}
@@ -138,6 +144,8 @@ const WeddingRegistery = ({
             <div className="w-[100%]">
               <p className="font-[600] text-[#4B5563] text-[15px]">Title</p>
               <input
+                required={!cardData?.hideRegistry}
+                autoComplete={false}
                 type="text"
                 value={faq.title}
                 onChange={(e) => handleQuestionChange(i, e.target.value)}
@@ -148,7 +156,9 @@ const WeddingRegistery = ({
           <div className="w-[100%] mt-3">
             <p className="font-[600] text-[#4B5563] text-[15px]">Url</p>
             <input
-              type="text"
+              required={!cardData?.hideRegistry}
+              autoComplete={false}
+              type="url"
               value={faq.url}
               onChange={(e) => handleAnswerChange(i, e.target.value)}
               className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"

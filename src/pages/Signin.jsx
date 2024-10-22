@@ -5,6 +5,8 @@ import signinImg from "../images/signin.png";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
 
 const Signin = () => {
   let baseUrl = import.meta.env.VITE_BASE_URL;
@@ -16,8 +18,21 @@ const Signin = () => {
 
   const navigate = useNavigate();
 
+  // -------------------------------------------------------Email validator--------------------------------------------------
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    return emailRegex.test(email);
+  };
+
   const handleSignIn = async () => {
     setLoading(true);
+    if (!isValidEmail(auth?.email)) {
+      toast.error("Please enter a valid email");
+      setLoading(false);
+      return;
+    }
     axios
       .post(`${baseUrl}/auth/login`, {
         email: auth?.email,

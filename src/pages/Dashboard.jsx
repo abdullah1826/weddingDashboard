@@ -51,7 +51,7 @@ const Dashboard = () => {
 
   const columns = [
     { field: "fName", headerName: "Full Name", width: 130 },
-    { field: "numberOfGuests", headerName: "Total Guests", width: 130 },
+    { field: "numberOfChilds", headerName: "Childs", width: 130 },
     { field: "mail", headerName: "Email", width: 130 },
     {
       field: "phone",
@@ -96,9 +96,9 @@ const Dashboard = () => {
       headerName: "Actions",
       width: 130,
       renderCell: (params) => (
-        <div className="h-[100%] flex justify-between items-center w-[70%] ">
+        <div className="h-[100%] flex justify-between items-center w-[50%] ">
           <MdOutlineFileDownload className="text-[#9D9D9D] text-xl cursor-pointer" />
-          <FiEye className="text-[#9D9D9D] text-xl cursor-pointer" />
+          {/* <FiEye className="text-[#9D9D9D] text-xl cursor-pointer" /> */}
           <GoTrash
             className="text-[#9D9D9D] hover:text-[red] text-xl cursor-pointer"
             onClick={() => {

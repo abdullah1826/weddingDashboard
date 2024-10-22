@@ -39,13 +39,13 @@ const SelectFonts = ({ cardData, setCardData }) => {
         </div>
         <div
           className="w-[22%] h-[70px] rounded-full border flex justify-center items-center font-[500] text-2xl cursor-pointer relative"
-          style={{ fontFamily: "Rock Salt" }}
-          onClick={() => setCardData({ ...cardData, font: "Rock Salt" })}
+          style={{ fontFamily: "SUSE" }}
+          onClick={() => setCardData({ ...cardData, font: "SUSE" })}
         >
-          {cardData.font === "Rock Salt" && (
+          {cardData.font === "SUSE" && (
             <RiVerifiedBadgeFill className="absolute top-0 right-0 text-[#4C6156]" />
           )}
-          Rock Salt
+          SUSE
         </div>
 
         {/* <div className="w-[22%] h-[70px] rounded-full border"></div>

@@ -10,6 +10,7 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
   // -----------------------------------image cropper functionality--------------------------------------
   const [image, setImage] = useState(null);
   const [open, setOpen] = useState(false);
+  const today = new Date().toISOString().split("T")[0];
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -99,6 +100,7 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
             </p>
             <input
               type="text"
+              required
               value={elm.title}
               onChange={(e) => {
                 const updatedState = [...state];
@@ -115,6 +117,7 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
             </p>
             <input
               type="time"
+              required
               value={elm.time}
               onChange={(e) => {
                 const updatedState = [...state];
@@ -132,6 +135,7 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
           </p>
           <textarea
             value={elm.description}
+            required
             onChange={(e) => {
               const updatedState = [...state];
               updatedState[i].description = e.target.value;
@@ -152,6 +156,8 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
         <div className="w-[30%]">
           <p className="font-[600] text-[#4B5563] text-[15px]">Event Title</p>
           <input
+            required={!cardData?.hideItinerary}
+            autoComplete={false}
             type="text"
             value={cardData?.itinerary[`event${eventNumber}`]?.title}
             onChange={(e) =>
@@ -173,7 +179,10 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
         <div className="w-[30%]">
           <p className="font-[600] text-[#4B5563] text-[15px]">Event Date</p>
           <input
+            required={!cardData?.hideItinerary}
+            autoComplete={false}
             type="date"
+            min={today}
             value={cardData?.itinerary[`event${eventNumber}`]?.date}
             onChange={(e) =>
               setCardData((prevCardData) => ({
@@ -194,6 +203,8 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
         <div className="w-[30%]">
           <p className="font-[600] text-[#4B5563] text-[15px]">Event Time</p>
           <input
+            required={!cardData?.hideItinerary}
+            autoComplete={false}
             type="time"
             value={cardData?.itinerary[`event${eventNumber}`]?.time}
             onChange={(e) =>
@@ -234,7 +245,7 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
   return (
     <div className="w-[100%] mt-12">
       <div className="w-[20%] flex justify-between items-center">
-        <p className="text-[#4C6156] text-[24px] font-[600] ">Itinerary</p>
+        <p className="text-[#4C6156] text-[24px] font-[600] ">The Itinerary</p>
         <CustomSwitch
           check={cardData?.hideItinerary}
           setCheck={handleHideShow}

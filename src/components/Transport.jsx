@@ -84,6 +84,8 @@ const PlacesWeLove = ({ cardData, setCardData, uploadImage }) => {
                 Place Name
               </p>
               <input
+                required={!cardData?.hidePlaces}
+                autoComplete={false}
                 type="text"
                 value={place.name}
                 onChange={(e) => {
@@ -102,6 +104,8 @@ const PlacesWeLove = ({ cardData, setCardData, uploadImage }) => {
                 Booking Url
               </p>
               <input
+                required={!cardData?.hidePlaces}
+                autoComplete={false}
                 type="text"
                 value={place.bookingUrl}
                 onChange={(e) => {
@@ -117,6 +121,8 @@ const PlacesWeLove = ({ cardData, setCardData, uploadImage }) => {
           <div className="w-[100%] mt-3">
             <p className="font-[600] text-[#4B5563] text-[15px]">Description</p>
             <textarea
+              required={!cardData?.hidePlaces}
+              autoComplete={false}
               value={place.description}
               onChange={(e) => {
                 const updatedPlaces = [...placesWeLove];

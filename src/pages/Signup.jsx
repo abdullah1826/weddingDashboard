@@ -13,8 +13,22 @@ const Signup = () => {
     email: "",
     password: "",
   });
+
+  // -------------------------------------------------------Email validator--------------------------------------------------
+
+  const isValidEmail = (email) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    return emailRegex.test(email);
+  };
+
   const handleSignup = () => {
     setLoading(true);
+    if (!isValidEmail(auth?.email)) {
+      toast.error("Please enter a valid email");
+      setLoading(false);
+      return;
+    }
     axios
       .post(`${baseUrl}/auth/register`, {
         email: auth?.email,
@@ -23,7 +37,7 @@ const Signup = () => {
       .then((res) => {
         console.log("the response", res.data);
         if (res?.data?.status === true) {
-          // toast.success(res?.data?.msg);
+          toast.success(res?.data?.msg);
           setLoading(false);
           navigate("/dashboard/signin");
           toast.success(res?.data?.msg);

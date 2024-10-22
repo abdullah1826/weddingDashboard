@@ -150,6 +150,8 @@ const BridalParty = ({ cardData, setCardData, handleChange, uploadImage }) => {
             </div>
             <input
               type="text"
+              required={!cardData?.hideBridalParty}
+              autoComplete={false}
               value={elm.name}
               onChange={(e) => {
                 const updatedGroomsMen = [...cardData.groomsMen];
@@ -200,6 +202,8 @@ const BridalParty = ({ cardData, setCardData, handleChange, uploadImage }) => {
               />
             </div>
             <input
+              required={!cardData?.hideBridalParty}
+              autoComplete={false}
               type="text"
               value={elm.name}
               onChange={(e) => {

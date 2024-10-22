@@ -99,6 +99,8 @@ const Accomodation = ({ cardData, setCardData, uploadImage }) => {
                 Hotel Name
               </p>
               <input
+                required={!cardData?.hideAccomodation}
+                autoComplete={false}
                 type="text"
                 className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
                 value={elm.name}
@@ -113,6 +115,8 @@ const Accomodation = ({ cardData, setCardData, uploadImage }) => {
                 Booking Url
               </p>
               <input
+                required={!cardData?.hideAccomodation}
+                autoComplete={false}
                 type="text"
                 className="outline-none w-[100%] h-[40px] rounded-[6px] border border-[#D1D5DB] p-2"
                 value={elm.bookingUrl}
@@ -126,6 +130,8 @@ const Accomodation = ({ cardData, setCardData, uploadImage }) => {
           <div className="w-[100%] mt-3">
             <p className="font-[600] text-[#4B5563] text-[15px]">Description</p>
             <textarea
+              required={!cardData?.hideAccomodation}
+              autoComplete={false}
               className="outline-none w-[100%] h-[60px] rounded-[6px] border border-[#D1D5DB] p-2"
               value={elm.description}
               onChange={(e) =>

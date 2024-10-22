@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import fb from "../images/fb.png";
 import google from "../images/google.png";
 import { useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+import { FiEye } from "react-icons/fi";
+import { FiEyeOff } from "react-icons/fi";
 
 const AuthInput = ({ isSignin, auth, setAuth, handleFunction, loading }) => {
   const naviget = useNavigate();
+
+  const [show, setshow] = useState(false);
+
+
+
 
   return (
     <div className="h-[100%] w-[40%] flex justify-center items-center">
@@ -22,13 +29,27 @@ const AuthInput = ({ isSignin, auth, setAuth, handleFunction, loading }) => {
             value={auth.email}
             onChange={(e) => setAuth({ ...auth, email: e.target.value })}
           />
-          <input
-            type="text"
-            className="outline-none w-[90%] border h-[55px] rounded-[8px] border-[#B4B4B4] pl-2 mt-3"
-            placeholder="Enter password"
-            value={auth.password}
-            onChange={(e) => setAuth({ ...auth, password: e.target.value })}
-          />
+          <div className="w-[90%] mt-3 h-[55px] relative flex items-center">
+            <input
+              type={show ? "text" : "password"}
+              className="outline-none w-[100%] border h-[100%]  rounded-[8px] border-[#B4B4B4] pl-2 "
+              placeholder="Enter password"
+              value={auth.password}
+              onChange={(e) => setAuth({ ...auth, password: e.target.value })}
+            />
+            {!show ? (
+              <FiEye
+                className="absolute text-[#4C6156] text-xl right-3"
+                onClick={() => setshow(true)}
+              />
+            ) : (
+              <FiEyeOff
+                className="absolute text-[#4C6156] text-xl right-3"
+                onClick={() => setshow(false)}
+              />
+            )}
+          </div>
+
           {/* {isSignin && (
             <div className="w-[90%] flex justify-end mt-1">
               <p className="font-[400] text-[14px] text-[#333333] cursor-pointer">
