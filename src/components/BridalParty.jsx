@@ -113,8 +113,8 @@ const BridalParty = ({ cardData, setCardData, handleChange, uploadImage }) => {
 
   return (
     <div className="w-[100%] mt-12">
-      <div className="w-[25%] flex justify-between items-center">
-        <p className="text-[#4C6156] text-[24px] font-[600] ">Bridal Party</p>
+      <div className="sm:w-[25%] flex sm:justify-between items-center">
+        <p className="text-[#4C6156] sm:text-[24px] font-[600] ">Bridal Party</p>
         <CustomSwitch
           check={cardData?.hideBridalParty}
           setCheck={handleHideShow}
@@ -123,8 +123,8 @@ const BridalParty = ({ cardData, setCardData, handleChange, uploadImage }) => {
       </div>
 
       {/* Grooms Men Section */}
-      <p className="text-[#4C6156] text-[24px] font-[600] mt-3">Grooms Men</p>
-      <div className="w-[100%] flex gap-3 mt-1">
+      <p className="text-[#4C6156] sm:text-[24px] font-[600] mt-3 mb-3 sm:mb-0">Grooms Men</p>
+      <div className="w-[100%] flex gap-3 flex-wrap mt-1">
         {cardData?.groomsMen?.map((elm, i) => (
           <div
             key={i}
@@ -175,8 +175,8 @@ const BridalParty = ({ cardData, setCardData, handleChange, uploadImage }) => {
       </div>
 
       {/* Brides Maids Section */}
-      <p className="text-[#4C6156] text-[24px] font-[600] mt-3">Brides Maids</p>
-      <div className="w-[100%] flex gap-3 mt-1">
+      <p className="text-[#4C6156] sm:text-[24px] font-[600] mt-3 mb-3 sm:mb-0">Brides Maids</p>
+      <div className="w-[100%] flex gap-3 mt-1 flex-wrap">
         {cardData?.bridesMaids?.map((elm, i) => (
           <div
             key={i}
@@ -227,11 +227,11 @@ const BridalParty = ({ cardData, setCardData, handleChange, uploadImage }) => {
       </div>
 
       <div className="w-[100%] flex flex-col items-center">
-        <p className="text-[#4C6156] text-[24px] font-[600] mt-5 w-[100%]">
+        <p className="text-[#4C6156] sm:text-[24px] font-[600] mt-5 w-[100%] mb-3 sm:mb-0">
           Background Image
         </p>
         {cardData?.bridalBgImg ? (
-          <div className="w-[606px] h-[300px] relative">
+          <div className="sm:w-[606px] w-[100%] sm:h-[300px] relative">
             <MdOutlineCancel
               className="text-3xl absolute right-[-10px] cursor-pointer top-[-10px] "
               onClick={() => setCardData({ ...cardData, bridalBgImg: "" })}
@@ -242,7 +242,7 @@ const BridalParty = ({ cardData, setCardData, handleChange, uploadImage }) => {
             />
           </div>
         ) : (
-          <div className="w-[606px] h-[300px] border border-dashed bg-[#E6F8EE] border-[#4C6156] flex justify-center items-center">
+          <div className="sm:w-[606px] w-[100%] sm:h-[300px] h-[200px] border border-dashed bg-[#E6F8EE] border-[#4C6156] flex justify-center items-center">
             <div
               className="flex flex-col items-center cursor-pointer"
               onClick={handleClick}

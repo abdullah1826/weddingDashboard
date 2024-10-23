@@ -82,13 +82,13 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
   return (
     <div className="w-[100%] mt-5">
       <div className="w-[20%] flex justify-between items-center">
-        <p className="text-[#4C6156] text-[24px] font-[600] ">Header</p>
+        <p className="text-[#4C6156] sm:text-[24px] font-[600] ">Header</p>
         <CustomSwitch check={cardData?.hidebanner} setCheck={handleHideShow} />
         <Instructions />
       </div>
 
-      <div className="w-[100%] flex justify-between mt-3">
-        <div className="w-[24%]">
+      <div className="w-[100%] flex justify-between flex-wrap mt-3">
+        <div className="sm:w-[24%] w-[48%]">
           <p className="font-[600] text-[#4B5563] text-[15px]">Groom Name</p>
           <input
             type="text"
@@ -101,7 +101,7 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
           />
         </div>
 
-        <div className="w-[24%]">
+        <div className="sm:w-[24%] w-[48%]">
           <p className="font-[600] text-[#4B5563] text-[15px]">Bride Name</p>
           <input
             type="text"
@@ -114,8 +114,8 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
           />
         </div>
 
-        <div className="w-[48%]">
-          <p className="font-[600] text-[#4B5563] text-[15px]">
+        <div className="sm:w-[48%] w-[100%] sm:mt-0 mt-6">
+          <p className="font-[600] text-[#4B5563]  text-[15px]">
             Welcomming Text
           </p>
           <input
@@ -159,8 +159,8 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
         </div>
       </div>
 
-      <div className="w-[100%] flex justify-between mt-7">
-        {/* <div className="w-[50%]">
+      <div className="w-[100%] flex justify-between flex-wrap mt-7">
+        {/* <div className="w-[50%] ">
           <p className="font-[600] text-[#4B5563] text-[15px]">Location</p>
           <input
             type="text"
@@ -171,7 +171,7 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
           />
         </div> */}
 
-        <div className="w-[50%]">
+        <div className="sm:w-[50%] w-[100%] flex flex-col">
           <p className="font-[600] text-[#4B5563] text-[15px]">Time</p>
           <input
             type="time"
@@ -184,9 +184,9 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
           />
         </div>
 
-        <div className="w-[48%] flex justify-start items-center gap-2 ">
+        <div className="sm:w-[48%] w-[100%] flex justify-start items-center gap-2 ">
           <div>
-            <p className="font-[600] text-[#4B5563] text-[15px]">Add logo</p>
+            <p className="font-[600] text-[#4B5563] text-[15px] sm:mt-0 mt-10">Add logo</p>
             <div className="h-[40px] pr-3 rounded-[6px]  border-[#D1D5DB] flex items-center pl-2 mb-8 ">
               <input
                 type="file"
@@ -216,11 +216,11 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
       </div>
 
       <div className="w-[100%] flex flex-col items-center">
-        <p className="text-[#4C6156] text-[24px] font-[600] mt-5 w-[100%]">
+        <p className="text-[#4C6156] sm:text-[24px] font-[600] mt-5 sm:mb-0 mb-2 w-[100%]">
           Header Image
         </p>
         {cardData?.headerImage ? (
-          <div className="w-[606px] h-[300px] relative">
+          <div className="sm:w-[606px] w-[100%] sm:h-[300px]  relative">
             <MdCancel
               className="text-3xl absolute right-[-10px] cursor-pointer top-[-10px] text-[#4C6156]"
               onClick={() => setCardData({ ...cardData, headerImage: "" })}
@@ -231,7 +231,7 @@ const Header = ({ cardData, setCardData, handleChange, uploadImage }) => {
             />
           </div>
         ) : (
-          <div className="w-[606px] h-[300px] border border-dashed bg-[#E6F8EE] border-[#4C6156] flex justify-center items-center">
+          <div className="sm:w-[606px] w-[100%] sm:h-[300px] h-[200px] border border-dashed bg-[#E6F8EE] border-[#4C6156] flex justify-center items-center">
             <div
               className="flex flex-col items-center cursor-pointer"
               onClick={handleClick}

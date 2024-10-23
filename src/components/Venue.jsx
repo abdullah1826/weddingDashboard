@@ -63,7 +63,7 @@ const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
   return (
     <div className="w-[100%] mt-12">
       <div className="w-[20%] flex justify-between items-center">
-        <p className="text-[#4C6156] text-[24px] font-[600] ">Venue</p>
+        <p className="text-[#4C6156] sm:text-[24px] font-[600] ">Venue</p>
         <CustomSwitch check={cardData?.hideVenue} setCheck={handleHideShow} />
         <Instructions />
       </div>
@@ -107,8 +107,8 @@ const Venue = ({ cardData, setCardData, handleChange, uploadImage }) => {
           ></textarea>
         </div>
       </div>
-      <p className="font-[600] text-[#4B5563] text-[15px] mt-3">Venue images</p>
-      <div className="w-[100%] flex gap-3 mt-2">
+      <p className="font-[600] text-[#4B5563] text-[15px] mt-3 sm:mb-0 mb-3">Venue images</p>
+      <div className="w-[100%] flex gap-3 flex-wrap mt-2">
         {cardData?.venueImages?.map((img, i) => {
           return (
             <div className="h-[100px] w-[100px] rounded-md relative">

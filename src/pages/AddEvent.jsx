@@ -26,6 +26,9 @@ import WeddingRegistery from "../components/WeddingRegistery";
 import CircularProgress from "@mui/material/CircularProgress";
 import Details from "../components/Details";
 import io from "socket.io-client";
+import MobileSidebar from "../components/MobileSidebar";
+import { IconButton } from "@mui/material";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
 
 const AddEvent = () => {
   const profile = "https://card.thewelcomepass.com/";
@@ -215,16 +218,25 @@ const AddEvent = () => {
         setsubmitLoading(false);
       });
   };
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+  let screenWidth=window.innerWidth
   return (
     <div className="w-[100%] h-[100vh] flex">
-      <Sidebar />
+    <MobileSidebar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />
+    {screenWidth> 440 ?
+    <Sidebar />
+    :
+   ""}
       {loading ? (
-        <div className="w-[78%] h-[100%]  flex justify-center items-center">
+        <div className="sm:w-[78%] w-[100%] h-[100%]  flex justify-center items-center">
           <CircularProgress size={50} color="inherit" />
         </div>
       ) : (
-        <div className="w-[78%] h-[100%] border flex flex-col items-center overflow-y-scroll ">
+        <div className="sm:w-[78%] w-[100%] h-[100%] border flex flex-col items-center overflow-y-scroll ">
           <Toaster />
           <ChangeOrder
             orderModal={orderModal}
@@ -232,13 +244,25 @@ const AddEvent = () => {
             cardData={cardData}
             setCardData={setCardData}
           />
-          <div className="w-[100%] h-[80px] border-b shadow-lg"></div>
+          <div className="w-[100%] h-[80px] border-b flex justify-between items-center shadow-lg">
+          {screenWidth< 440 && 
+            <div style={{ textAlign: "center", padding: "16px", color: "#000", fontSize: "26px", fontWeight: 400 }}>
+            The Welcome Pass
+          </div>
+          }
+      {screenWidth< 440 &&
+        <IconButton onClick={toggleDrawer}>
+        <HiOutlineMenuAlt3 className="text-[#000] text-[30px]" />
+      </IconButton>
+
+      }
+          </div>
           <div className="w-[90%] h-[20px] mt-8">
-            <div className="w-[100%] flex justify-between items-center">
-              <h2 className="font-[700] text-[38px] text-[#4C6156]">Events</h2>
-              <div className="w-[50%] flex gap-3 justify-end">
+            <div className="w-[100%] flex flex-col sm:flex-row justify-between sm:items-center">
+              <h2 className="font-[700] mb-2 sm:mb-0 sm:text-[38px] text-[20px] text-[#4C6156]">Events</h2>
+              <div className="sm:w-[50%] w-[100%] flex gap-3 justify-end">
                 <div
-                  className="w-[40%] h-[50px] rounded-full bg-[#4C6156] text-white flex justify-center items-center gap-3 cursor-pointer"
+                  className="sm:w-[40%] w-[48%] sm:h-[50px] h-[45px] sm:text-[16px] text-[14px]  rounded-full bg-[#4C6156] text-white flex justify-center items-center gap-3 cursor-pointer"
                   onClick={() => handleOrderModal()}
                 >
                   Change Order
@@ -246,7 +270,7 @@ const AddEvent = () => {
                 </div>
                 {cardData?._id && (
                   <div
-                    className="w-[30%] h-[50px] rounded-full bg-[#4C6156] text-white flex justify-center items-center gap-3 cursor-pointer"
+                    className="sm:w-[30%] w-[48%] sm:h-[50px] h-[45px] rounded-full sm:text-[16px] text-[14px]  bg-[#4C6156] text-white flex justify-center items-center gap-3 cursor-pointer"
                     onClick={() => window.open(profile + cardData?._id)}
                   >
                     Preview
@@ -324,9 +348,9 @@ const AddEvent = () => {
               <br />
               <br />
               <div className="w-[78%] h-[70px] flex justify-end items-center mt-4 fixed bottom-0   right-0">
-                <div className="w-[30%] flex gap-3 justify-center">
+                <div className="sm:w-[30%] w-[80%] flex gap-3 justify-center">
                   <button
-                    className="w-[70%] h-[50px] rounded-full bg-[#4C6156] text-white flex justify-center items-center gap-3 cursor-pointer"
+                    className="w-[70%] sm:h-[50px] h-[45px] rounded-full bg-[#4C6156] text-white flex justify-center items-center gap-3 cursor-pointer"
                     // onClick={() => handleCreate()}
                     type="submit"
                   >

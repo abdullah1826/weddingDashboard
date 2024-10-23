@@ -11,6 +11,9 @@ import DownloadCsv from "../components/DownloadCsv";
 import CircularProgress from "@mui/material/CircularProgress";
 import Allert from "../components/Modals/Allert";
 import toast, { Toaster } from "react-hot-toast";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import MobileSidebar from "../components/MobileSidebar";
+import { IconButton } from "@mui/material";
 
 const Dashboard = () => {
   let baseUrl = import.meta.env.VITE_BASE_URL;
@@ -229,31 +232,53 @@ const Dashboard = () => {
         setSelectedIds([]);
       });
   };
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
+  };
+  let screenWidth=window.innerWidth
   return (
     <div className="w-[100%] h-[100vh] flex">
       <Toaster />
+      <MobileSidebar drawerOpen={drawerOpen} toggleDrawer={toggleDrawer} />
+      {screenWidth> 440 ?
       <Sidebar />
+      :
+     ""}
       {loading ? (
-        <div className="w-[78%] h-[100%] border flex justify-center items-center text-[#4C6156]">
+        <div className="sm:w-[78%] w-[100%] h-[100%] border flex justify-center items-center text-[#4C6156]">
           <CircularProgress color="inherit" size={50} />{" "}
         </div>
       ) : (
-        <div className="w-[78%] h-[100%] border flex flex-col items-center overflow-y-scroll">
+        <div className="sm:w-[78%] w-[100%] h-[100%] border flex flex-col items-center overflow-y-scroll">
           <Allert
             allertModal={allertModal}
             handleallertModal={handleallertModal}
             text="Are you sure to delete the selected guest ?"
             func={handleDelete}
           />
-          <div className="w-[100%] h-[80px] border-b shadow-lg"></div>
+          <div className="w-[100%] h-[80px] border-b flex justify-between items-center shadow-lg">
+          {screenWidth< 440 && 
+            <div style={{ textAlign: "center", padding: "16px", color: "#000", fontSize: "26px", fontWeight: 400 }}>
+            The Welcome Pass
+          </div>
+          }
+      {screenWidth< 440 &&
+        <IconButton onClick={toggleDrawer}>
+        <HiOutlineMenuAlt3 className="text-[#000] text-[30px]" />
+      </IconButton>
+
+      }
+          
+          </div>
           <div className="w-[93%] mt-8">
-            <div className="w-[100%] flex justify-between items-center">
-              <p className="font-[700] text-[30px] text-[#4C6156]">
+            <div className="w-[100%] flex flex-col sm:flex-row justify-between sm:items-center">
+              <p className="font-[700] mb-2 sm:mb-0 sm:text-[30px] text-[20px] text-[#4C6156]">
                 All Members
               </p>
               <div className="flex gap-4">
-                <div className="w-[210px] h-[42px] border border-[#C7C7C7] rounded-[7px] flex">
+                <div className="sm:w-[210px] w-[58%] h-[42px] border border-[#C7C7C7] rounded-[7px] flex">
                   <div className="w-[20%] h-[100%] flex justify-center items-center">
                     <CiSearch className="text-[#868686] text-xl" />
                   </div>
@@ -265,7 +290,7 @@ const Dashboard = () => {
                     value={search}
                   />
                 </div>
-                <div className="h-[42px] w-[140px] rounded-[7px] text-[#FFFFFF] bg-[#4C6156] flex justify-center items-center gap-1 cursor-pointer">
+                <div className="h-[42px] sm:w-[140px] w-[40%] rounded-[7px] text-[#FFFFFF] bg-[#4C6156] flex justify-center items-center gap-1 cursor-pointer">
                   <MdOutlineFileDownload className="text-xl" />
                   <p className="font-[500] text-[15px]">
                     <DownloadCsv data={filtered} />

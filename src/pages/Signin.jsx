@@ -55,11 +55,13 @@ const Signin = () => {
       });
     console.log("api end working......");
   };
-
+  let screenWidth=window.innerWidth
   return (
     <div className="w-[100%] h-[100vh] flex">
       <Toaster />
+      {screenWidth > 440 &&
       <AuthImage img={signinImg} />
+      }
       <AuthInput
         isSignin={true}
         auth={auth}

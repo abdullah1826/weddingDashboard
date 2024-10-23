@@ -2,6 +2,7 @@ import { Box, Modal } from "@mui/material";
 import React, { useState } from "react";
 import { MdDragIndicator } from "react-icons/md";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 const ChangeOrder = ({
   orderModal,
@@ -33,16 +34,33 @@ const ChangeOrder = ({
     "Contact us",
     "Wedding registry",
   ];
-  const handleDragEnd = (result) => {
-    console.log("working");
-    if (!result.destination) {
-      return;
-    }
-    const updatedItems = [...cardData?.order];
-    const [movedItem] = updatedItems.splice(result.source.index, 1);
-    updatedItems.splice(result.destination.index, 0, movedItem);
-    setCardData({ ...cardData, order: updatedItems });
-  };
+
+
+    const handleDragEnd = (result) => {
+      if (!result.destination) {
+        return; // Exit if there's no valid destination
+      }
+    
+      // Copy the order array to prevent mutating the original state
+      const updatedItems = Array.from(cardData?.order || [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+    
+      // Remove the item from the source position
+      const [movedItem] = updatedItems.splice(result.source.index, 1);
+    
+      // Insert it at the destination position
+      updatedItems.splice(result.destination.index, 0, movedItem);
+    
+      // Check if the item was somehow replaced by 0, and correct it
+      if (updatedItems.includes(0)) {
+        const index = updatedItems.indexOf(0);
+        updatedItems[index] = 11; // Replace 0 with 11 in case of an issue
+      }
+    
+      // Save the updated order back to the state
+      setCardData({ ...cardData, order: updatedItems });
+    };
+  let screenWidth=window.innerWidth
+  console.log(cardData)
   return (
     <Modal open={orderModal} onClose={handleOrderModal}>
       <Box
@@ -51,18 +69,20 @@ const ChangeOrder = ({
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          width: 440,
-          height: 580,
+          width: screenWidth > 440 ? 440 : "90%",
+          height: "92vh",
           bgcolor: "background.paper",
           boxShadow: 24,
           borderRadius: 2,
+          outline:"none",
         }}
       >
-        <div className="w-[100%] text-center mt-2 font-500 text-xl">
+        <div className="w-[100%] text-center  font-500 sm:text-xl mt-6 ">
           Drag the boxes to rearrange the sections
+          <IoCloseCircleOutline onClick={handleOrderModal} className="absolute right-2 top-1 text-[25px] cursor-pointer"/>
         </div>
 
-        <div className="w-[100%] flex justify-center mt-4 h-[85%]">
+        <div className="w-[100%] flex justify-center mt-2 h-[85%]">
           <DragDropContext onDragEnd={handleDragEnd}>
             <Droppable droppableId="droppable">
               {(provided) => (

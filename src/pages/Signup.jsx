@@ -53,11 +53,13 @@ const Signup = () => {
         setLoading(false);
       });
   };
-
+  let screenWidth=window.innerWidth
   return (
     <div className="w-[100%] h-[100vh] flex">
       <Toaster />
+      {screenWidth > 440 &&
       <AuthImage img={signupImg} />
+      }
       <AuthInput
         isSignin={false}
         auth={auth}

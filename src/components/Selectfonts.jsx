@@ -5,10 +5,10 @@ import { RiVerifiedBadgeFill } from "react-icons/ri";
 const SelectFonts = ({ cardData, setCardData }) => {
   return (
     <div className="w-[100%] mt-12">
-      <p className="text-[#4C6156] text-[24px] font-[600] ">Select Fonts</p>
+      <p className="text-[#4C6156] sm:text-[24px] font-[600] ">Select Fonts</p>
       <div className="w-[100%] h-[100px] border rounded-md mt-2 flex justify-around items-center flex-wrap">
         <div
-          className="w-[22%] h-[70px] rounded-full border flex justify-center items-center font-[500] text-2xl cursor-pointer relative"
+          className="w-[22%] sm:h-[70px] h-[50px] rounded-full border flex justify-center items-center font-[500] sm: sm:text-2xl  text-[14px] cursor-pointer relative"
           style={{ fontFamily: "Poppins" }}
           onClick={() => setCardData({ ...cardData, font: "Poppins" })}
         >
@@ -18,7 +18,7 @@ const SelectFonts = ({ cardData, setCardData }) => {
           Poppins
         </div>
         <div
-          className="w-[22%] h-[70px] rounded-full border flex justify-center items-center font-[500] text-2xl cursor-pointer relative"
+          className="w-[22%] sm:h-[70px] h-[50px] rounded-full border flex justify-center items-center font-[500]  sm:text-2xl text-[14px] cursor-pointer relative"
           style={{ fontFamily: "Montaga" }}
           onClick={() => setCardData({ ...cardData, font: "Montaga" })}
         >
@@ -28,7 +28,7 @@ const SelectFonts = ({ cardData, setCardData }) => {
           Montaga
         </div>
         <div
-          className="w-[22%] h-[70px] rounded-full border flex justify-center items-center font-[500] text-2xl cursor-pointer relative"
+          className="w-[22%] sm:h-[70px] h-[50px] rounded-full border flex justify-center items-center font-[500]  sm:text-2xl text-[14px] cursor-pointer relative"
           style={{ fontFamily: "Parisienne" }}
           onClick={() => setCardData({ ...cardData, font: "Parisienne" })}
         >
@@ -38,7 +38,7 @@ const SelectFonts = ({ cardData, setCardData }) => {
           Parisienne
         </div>
         <div
-          className="w-[22%] h-[70px] rounded-full border flex justify-center items-center font-[500] text-2xl cursor-pointer relative"
+          className="w-[22%] sm:h-[70px] h-[50px] rounded-full border flex justify-center items-center font-[500]  sm:text-2xl text-[14px] cursor-pointer relative"
           style={{ fontFamily: "SUSE" }}
           onClick={() => setCardData({ ...cardData, font: "SUSE" })}
         >
@@ -48,7 +48,7 @@ const SelectFonts = ({ cardData, setCardData }) => {
           SUSE
         </div>
 
-        {/* <div className="w-[22%] h-[70px] rounded-full border"></div>
+        {/* <div className="w-[22%] sm:h-[70px] h-[50px] rounded-full border"></div>
         <div className="w-[22%] h-[70px] rounded-full border"></div>
         <div className="w-[22%] h-[70px] rounded-full border"></div>
         <div className="w-[22%] h-[70px] rounded-full border"></div> */}

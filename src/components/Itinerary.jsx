@@ -150,10 +150,10 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
 
   const renderEvent = (eventName, eventState, setEventState, eventNumber) => (
     <div className="w-[100%]">
-      <p className="text-[#4C6156] text-[24px] font-[600] mt-5">{eventName}</p>
+      <p className="text-[#4C6156] sm:text-[24px] font-[600] mt-5">{eventName}</p>
 
-      <div className="w-[100%] flex justify-between mt-3">
-        <div className="w-[30%]">
+      <div className="w-[100%] flex justify-between flex-wrap mt-3">
+        <div className="sm:w-[30%] w-[100%]">
           <p className="font-[600] text-[#4B5563] text-[15px]">Event Title</p>
           <input
             required={!cardData?.hideItinerary}
@@ -176,7 +176,7 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
           />
         </div>
 
-        <div className="w-[30%]">
+        <div className="sm:w-[30%] w-[48%] mt-6 sm:mt-0">
           <p className="font-[600] text-[#4B5563] text-[15px]">Event Date</p>
           <input
             required={!cardData?.hideItinerary}
@@ -200,7 +200,7 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
           />
         </div>
 
-        <div className="w-[30%]">
+        <div className="sm:w-[30%] w-[48%] mt-6 sm:mt-0">
           <p className="font-[600] text-[#4B5563] text-[15px]">Event Time</p>
           <input
             required={!cardData?.hideItinerary}
@@ -244,8 +244,8 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
 
   return (
     <div className="w-[100%] mt-12">
-      <div className="w-[20%] flex justify-between items-center">
-        <p className="text-[#4C6156] text-[24px] font-[600] ">The Itinerary</p>
+      <div className="sm:w-[20%] flex sm:justify-between items-center">
+        <p className="text-[#4C6156] sm:text-[24px] font-[600] ">The Itinerary</p>
         <CustomSwitch
           check={cardData?.hideItinerary}
           setCheck={handleHideShow}
@@ -259,11 +259,11 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
       {renderEvent("Event 4", e4, setE4, 4, "event4")}
 
       <div className="w-[100%] flex flex-col items-center">
-        <p className="text-[#4C6156] text-[24px] font-[600] mt-5 w-[100%]">
+        <p className="text-[#4C6156] sm:text-[24px] font-[600] mt-5 w-[100%] mb-3 sm:mb-0">
           Background Image
         </p>
         {cardData?.itineraryBg ? (
-          <div className="w-[606px] h-[300px] relative">
+          <div className="sm:w-[606px] w-[100%] sm:h-[300px] relative">
             <MdOutlineCancel
               className="text-3xl absolute right-[-10px] cursor-pointer top-[-10px] "
               onClick={() => setCardData({ ...cardData, itineraryBg: "" })}
@@ -274,7 +274,7 @@ const Itinerary = ({ cardData, setCardData, uploadImage }) => {
             />
           </div>
         ) : (
-          <div className="w-[606px] h-[300px] border border-dashed bg-[#E6F8EE] border-[#4C6156] flex justify-center items-center">
+          <div className="sm:w-[606px] sm:h-[300px] w-[100%] h-[200px] border border-dashed bg-[#E6F8EE] border-[#4C6156] flex justify-center items-center">
             <div
               className="flex flex-col items-center cursor-pointer"
               onClick={handleClick}

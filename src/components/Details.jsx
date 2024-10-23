@@ -120,8 +120,8 @@ const Details = ({ cardData, setCardData, handleChange, uploadImage }) => {
         </div>
       </div>
 
-      <p className="font-[600] text-[#4B5563] text-[15px] mt-3">Venue images</p>
-      <div className="w-[100%] flex gap-3 mt-2">
+      <p className="font-[600] text-[#4B5563] text-[15px] mt-3 sm:mb-0 mb-3">Venue images</p>
+      <div className="w-[100%] flex gap-3 flex-wrap mt-2">
         {cardData?.detailImages?.map((img, i) => {
           return (
             <div className="h-[100px] w-[100px] rounded-md relative">

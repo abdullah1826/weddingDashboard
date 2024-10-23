@@ -15,9 +15,9 @@ const AuthInput = ({ isSignin, auth, setAuth, handleFunction, loading }) => {
 
 
   return (
-    <div className="h-[100%] w-[40%] flex justify-center items-center">
-      <div className="w-[82%] h-[90%]  rounded-[65px] shadow-xl border flex justify-center items-center">
-        <div className="w-[90%] h-[84%]  flex flex-col items-center">
+    <div className="h-[100%] sm:w-[40%] w-[100%] flex justify-center items-center">
+      <div className="sm:w-[82%] h-[100%] w-[100%] sm:h-[90%]  sm:rounded-[65px] shadow-xl border flex justify-center items-center">
+        <div className="sm:w-[90%] w-[100%] sm:h-[84%] sm:justify-start justify-center  flex flex-col items-center">
           <h2 className="text-[26px] font-[400]">The Welcome Pass</h2>
           <p className="font-[600] text-[20px] text-[#333333] mt-4">
             {isSignin ? "Sign in" : "Sign up"}
@@ -78,7 +78,7 @@ const AuthInput = ({ isSignin, auth, setAuth, handleFunction, loading }) => {
             <p className="text-[#8F8F8F] font-[400] ">Continue with Google</p>
           </div>
           {isSignin ? (
-            <p className="font-[400] text-[16px] mt-3">
+            <p className="font-[400] text-[16px] text-center mt-3">
               Don't have an account yet?{" "}
               <span
                 className="text-[#4C6156] text-[16px] font-[600] underline cursor-pointer"
